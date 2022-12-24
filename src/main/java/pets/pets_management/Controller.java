@@ -46,10 +46,9 @@ public class Controller {
         petService.updatePet(request);
     }
 
-/*    @DeleteMapping("pet")
-    public void deletePet(@RequestParam Integer petId) {
-        petService.deletePet(petId);
-    }*/
-
+    @PatchMapping("del/pet")
+    public void deletePet(@RequestBody PetDto request) {
+        petService.deletePet(request);
+    }
 
 }

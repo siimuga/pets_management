@@ -21,6 +21,9 @@ public class Pet {
     @Column(name = "CODE", nullable = false)
     private Integer code;
 
+    @Column(name = "ISACTIVE", nullable = false)
+    private Boolean isActive = true;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "TYPE_ID", nullable = false)
     private Type type;

@@ -35,7 +35,7 @@ public class PetService {
     @Resource
     private TypeRepository typeRepository;
 
-   @Resource
+    @Resource
     private PetMapper petMapper;
 
     @Resource
@@ -60,7 +60,7 @@ public class PetService {
     }
 
     public List<PetInfo> findAllPets() {
-        List<Pet> pets = petRepository.findAll();
+        List<Pet> pets = petRepository.findAllActive();
         List<PetInfo> petInfos =  petMapper.petsToPetInfos(pets);
         for (PetInfo petInfo : petInfos) {
             petInfo.setSeqNr(petInfos.indexOf(petInfo) + 1);
@@ -95,9 +95,9 @@ public class PetService {
         pet.get().setCountry(newCountry);
         petRepository.save(pet.get());
     }
-
-/*    public void deletePet(Integer petId) {
-        Optional<Pet> pet = petRepository.findById(petId);
-        petRepository.delete(pet.get());
-    }*/
+    public void deletePet(PetDto request) {
+        Optional<Pet> pet = petRepository.findById(request.getId());
+        pet.get().setIsActive(false);
+        petRepository.save(pet.get());
+    }
 }
