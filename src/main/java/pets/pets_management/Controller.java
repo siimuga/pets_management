@@ -41,4 +41,15 @@ public class Controller {
         return petService.findAllCountries();
     }
 
+    @PatchMapping("pet")
+    public void updatePet(@RequestBody PetInfo request) {
+        petService.updatePet(request);
+    }
+
+/*    @DeleteMapping("pet")
+    public void deletePet(@RequestParam Integer petId) {
+        petService.deletePet(petId);
+    }*/
+
+
 }

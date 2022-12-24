@@ -18,6 +18,7 @@ import pets.pets_management.repos.PetRepository;
 import pets.pets_management.repos.TypeRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PetService {
@@ -82,4 +83,21 @@ public class PetService {
         return countryMapper.countriesToCountryInfos(countries);
     }
 
+    public void updatePet(PetInfo request) {
+        Optional<Pet> pet = petRepository.findById(request.getId());
+        pet.get().setName(request.getName());
+        pet.get().setCode(request.getCode());
+        Type newType = typeRepository.findByName(request.getType());
+        pet.get().setType(newType);
+        FurColor newFurColor = furColorRepository.findByName(request.getFurColor());
+        pet.get().setFurColor(newFurColor);
+        Country newCountry = countryRepository.findByName(request.getCountry());
+        pet.get().setCountry(newCountry);
+        petRepository.save(pet.get());
+    }
+
+/*    public void deletePet(Integer petId) {
+        Optional<Pet> pet = petRepository.findById(petId);
+        petRepository.delete(pet.get());
+    }*/
 }
