@@ -19,3 +19,8 @@ INSERT INTO type (id, name) VALUES (DEFAULT, 'Dog');
 INSERT INTO type (id, name) VALUES (DEFAULT, 'Horse');
 INSERT INTO type (id, name) VALUES (DEFAULT, 'Rabbit');
 INSERT INTO type (id, name) VALUES (DEFAULT, 'Parrot');
+
+INSERT INTO userdata (id, username, password) VALUES (DEFAULT, 'admin', '123');
+INSERT INTO userdata (id, username, password) VALUES (DEFAULT, 'juku', 'tuku');
+INSERT INTO userdata (id, username, password) VALUES (DEFAULT, 'kass', 'koer');
+INSERT INTO userdata (id, username, password) VALUES (DEFAULT, 'lehm', 'siga');

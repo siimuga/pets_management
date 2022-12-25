@@ -17,9 +17,7 @@ public class Controller {
     PetService petService;
 
     @PostMapping("pet")
-    public void addPet(@RequestBody PetRequest request) {
-        petService.addPet(request);
-    }
+    public void addPet(@RequestBody PetRequest request) {petService.addPet(request);}
 
     @GetMapping("pets")
     public List<PetInfo> findAllPets() {
@@ -46,9 +44,14 @@ public class Controller {
         petService.updatePet(request);
     }
 
-    @PatchMapping("del/pet")
-    public void deletePet(@RequestBody PetDto request) {
-        petService.deletePet(request);
+    @DeleteMapping("pet")
+    public void deletePet(@RequestParam Integer petId) {
+        petService.deletePet(petId);
+    }
+
+    @GetMapping("pets/user")
+    public List<PetInfo> findAllPetsByUser(@RequestParam Integer userId) {
+        return petService.findAllPetsByUser(userId);
     }
 
 }

@@ -11,4 +11,5 @@ public class PetInfo {
     private String type;
     private String furColor;
     private String country;
+    private String owner;
 }

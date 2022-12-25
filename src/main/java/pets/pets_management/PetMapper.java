@@ -13,6 +13,7 @@ public interface PetMapper {
     @Mapping(source = "type.name", target = "type")
     @Mapping(source = "furColor.name", target = "furColor")
     @Mapping(source = "country.name", target = "country")
+    @Mapping(source = "userData.username", target = "owner")
     @Mapping(ignore = true, target = "seqNr")
     PetInfo petToPetInfo(Pet pet);
 

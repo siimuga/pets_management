@@ -16,6 +16,13 @@ CREATE TABLE IF NOT EXISTS type (
                                     name varchar(255)  NOT NULL,
                                     CONSTRAINT type_pk PRIMARY KEY (id)
 );
+CREATE TABLE IF NOT EXISTS userdata (
+                                      id serial  NOT NULL,
+                                      username varchar(255)  NOT NULL,
+                                      password varchar(255)  NOT NULL,
+                                      CONSTRAINT userdata_pk PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS pet (
                      id serial  NOT NULL,
                      name varchar(255)  NOT NULL,
@@ -23,6 +30,7 @@ CREATE TABLE IF NOT EXISTS pet (
                      type_id int  NOT NULL,
                      fur_color_id int  NOT NULL,
                      country_id int  NOT NULL,
+                     userdata_id int  NOT NULL,
                      CONSTRAINT pet_pk PRIMARY KEY (id)
 );
 
@@ -39,5 +47,10 @@ ALTER TABLE pet ADD CONSTRAINT pet_fur_color
 ALTER TABLE pet ADD CONSTRAINT pet_type
     FOREIGN KEY (type_id)
         REFERENCES type (id)
+        NOT DEFERRABLE
+;
+ALTER TABLE pet ADD CONSTRAINT pet_userdata
+    FOREIGN KEY (userdata_id)
+        REFERENCES userdata (id)
         NOT DEFERRABLE
 ;

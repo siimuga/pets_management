@@ -11,4 +11,12 @@ public interface PetRepository extends JpaRepository<Pet, Integer> {
     @Query("select p from Pet p where p.isActive = true")
     List<Pet> findAllActive();
 
+   /* @Query("select p from Pet p where p.userData.id = ?1 order by p.name")
+    List<Pet> findAllByUser(Integer id);*/
+
+    @Query("select p from Pet p where p.isActive = true and p.userData.id = ?1 order by p.name")
+    List<Pet> findAllByUser(Integer id);
+
+
+
 }

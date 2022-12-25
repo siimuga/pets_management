@@ -35,4 +35,8 @@ public class Pet {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "COUNTRY_ID", nullable = false)
     private Country country;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "USERDATA_ID", nullable = false)
+    private UserData userData;
 }

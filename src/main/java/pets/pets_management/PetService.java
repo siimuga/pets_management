@@ -5,17 +5,11 @@ import org.springframework.stereotype.Service;
 import pets.pets_management.dto.CountryInfo;
 import pets.pets_management.dto.FurColorInfo;
 import pets.pets_management.dto.TypeInfo;
-import pets.pets_management.entities.Country;
-import pets.pets_management.entities.FurColor;
-import pets.pets_management.entities.Pet;
-import pets.pets_management.entities.Type;
+import pets.pets_management.entities.*;
 import pets.pets_management.mappers.CountryMapper;
 import pets.pets_management.mappers.FurColorMapper;
 import pets.pets_management.mappers.TypeMapper;
-import pets.pets_management.repos.CountryRepository;
-import pets.pets_management.repos.FurColorRepository;
-import pets.pets_management.repos.PetRepository;
-import pets.pets_management.repos.TypeRepository;
+import pets.pets_management.repos.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,6 +28,9 @@ public class PetService {
 
     @Resource
     private TypeRepository typeRepository;
+
+    @Resource
+    private UserDataRepository userDataRepository;
 
     @Resource
     private PetMapper petMapper;
@@ -56,6 +53,8 @@ public class PetService {
         pet.setFurColor(byFurColor);
         Country byCountry = countryRepository.findByName(request.getCountry());
         pet.setCountry(byCountry);
+        Optional<UserData> user = userDataRepository.findById(request.getUserId());
+        pet.setUserData(user.get());
         petRepository.save(pet);
     }
 
@@ -95,9 +94,18 @@ public class PetService {
         pet.get().setCountry(newCountry);
         petRepository.save(pet.get());
     }
-    public void deletePet(PetDto request) {
-        Optional<Pet> pet = petRepository.findById(request.getId());
+
+    public void deletePet(Integer petId) {
+        Optional<Pet> pet = petRepository.findById(petId);
         pet.get().setIsActive(false);
         petRepository.save(pet.get());
+    }
+    public List<PetInfo> findAllPetsByUser(Integer userId) {
+        List<Pet> pets = petRepository.findAllByUser(userId);
+        List<PetInfo> petInfos =  petMapper.petsToPetInfos(pets);
+        for (PetInfo petInfo : petInfos) {
+            petInfo.setSeqNr(petInfos.indexOf(petInfo) + 1);
+        }
+        return petInfos;
     }
 }
