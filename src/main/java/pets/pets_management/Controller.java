@@ -16,6 +16,12 @@ public class Controller {
     @Resource
     PetService petService;
 
+    @Resource
+    private LoginService loginService;
+
+    @Resource
+    private UserDataService userDataService;
+
     @PostMapping("pet")
     public void addPet(@RequestBody PetRequest request) {petService.addPet(request);}
 
@@ -23,6 +29,9 @@ public class Controller {
     public List<PetInfo> findAllPets() {
        return petService.findAllPets();
     }
+
+    @GetMapping("users")
+    public List<UserInfo> findAllUsers() {return userDataService.findAllUsers();}
 
     @GetMapping("type")
     public List<TypeInfo> findAllTypes() {
@@ -52,6 +61,16 @@ public class Controller {
     @GetMapping("pets/user")
     public List<PetInfo> findAllPetsByUser(@RequestParam Integer userId) {
         return petService.findAllPetsByUser(userId);
+    }
+
+    @PostMapping("/login")
+    public Integer logIn(@RequestBody UserRequest request) {
+        return loginService.logIn(request);
+    }
+
+    @PostMapping("/register")
+    public void registerNewUser(@RequestBody UserRequest request) {
+        loginService.registerNewUser(request);
     }
 
 }
