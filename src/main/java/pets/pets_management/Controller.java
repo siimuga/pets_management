@@ -25,6 +25,11 @@ public class Controller {
     @PostMapping("pet")
     public void addPet(@RequestBody PetRequest request) {petService.addPet(request);}
 
+    @GetMapping("/code")
+    public Integer getNewCode(@RequestParam Integer userId) {
+        return petService.getNewCode(userId);
+    }
+
     @GetMapping("pets/sort")
     public List<PetInfo> findAllPetsSorted(@RequestParam String sort) {
         return petService.findAllPetsSorted(sort);
