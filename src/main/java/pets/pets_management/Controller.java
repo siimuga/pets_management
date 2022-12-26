@@ -25,9 +25,9 @@ public class Controller {
     @PostMapping("pet")
     public void addPet(@RequestBody PetRequest request) {petService.addPet(request);}
 
-    @GetMapping("pets")
-    public List<PetInfo> findAllPets() {
-       return petService.findAllPets();
+    @GetMapping("pets/sort")
+    public List<PetInfo> findAllPetsSorted(@RequestParam String sort) {
+        return petService.findAllPetsSorted(sort);
     }
 
     @GetMapping("users")
@@ -58,9 +58,9 @@ public class Controller {
         petService.deletePet(petId);
     }
 
-    @GetMapping("pets/user")
-    public List<PetInfo> findAllPetsByUser(@RequestParam Integer userId) {
-        return petService.findAllPetsByUser(userId);
+    @GetMapping("mypets/sort")
+    public List<PetInfo> findAllPetsByUserSorted(@RequestParam Integer userId, @RequestParam String sort) {
+        return petService.findAllPetsByUserSorted(userId, sort);
     }
 
     @PostMapping("/login")

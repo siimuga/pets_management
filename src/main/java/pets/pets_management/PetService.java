@@ -58,15 +58,6 @@ public class PetService {
         petRepository.save(pet);
     }
 
-    public List<PetInfo> findAllPets() {
-        List<Pet> pets = petRepository.findAllActive();
-        List<PetInfo> petInfos =  petMapper.petsToPetInfos(pets);
-        for (PetInfo petInfo : petInfos) {
-            petInfo.setSeqNr(petInfos.indexOf(petInfo) + 1);
-        }
-        return petInfos;
-    }
-
     public List<TypeInfo> findAllTypes() {
         List<Type> types = typeRepository.findAll();
         return typeMapper.typesToTypeInfos(types);
@@ -100,8 +91,42 @@ public class PetService {
         pet.get().setIsActive(false);
         petRepository.save(pet.get());
     }
-    public List<PetInfo> findAllPetsByUser(Integer userId) {
-        List<Pet> pets = petRepository.findAllByUser(userId);
+
+    public List<PetInfo> findAllPetsByUserSorted(Integer userId, String sort) {
+        List<Pet> pets = switch (sort) {
+            case "nameDes" -> petRepository.findAllByUserByNameDesc(userId);
+            case "codeAsc" -> petRepository.findAllByUserByCodeAsc(userId);
+            case "codeDes" -> petRepository.findAllByUserByCodeDesc(userId);
+            case "typeAsc" -> petRepository.findAllByUserByTypeAsc(userId);
+            case "typeDes" -> petRepository.findAllByUserByTypeDesc(userId);
+            case "furAsc" -> petRepository.findAllByUserByFurColorAsc(userId);
+            case "furDes" -> petRepository.findAllByUserByFurColorDesc(userId);
+            case "countryAsc" -> petRepository.findAllByUserByCountryAsc(userId);
+            case "countryDes" -> petRepository.findAllByUserByCountryDesc(userId);
+            default -> petRepository.findAllByUserByNameAsc(userId);
+        };
+        List<PetInfo> petInfos =  petMapper.petsToPetInfos(pets);
+        for (PetInfo petInfo : petInfos) {
+            petInfo.setSeqNr(petInfos.indexOf(petInfo) + 1);
+        }
+        return petInfos;
+    }
+
+    public List<PetInfo> findAllPetsSorted(String sort) {
+        List<Pet> pets = switch (sort) {
+            case "nameDes" -> petRepository.findAllByNameDesc();
+            case "codeAsc" -> petRepository.findAllByCodeAsc();
+            case "codeDes" -> petRepository.findAllByCodeDesc();
+            case "typeAsc" -> petRepository.findAllByTypeAsc();
+            case "typeDes" -> petRepository.findAllByTypeDesc();
+            case "furAsc" -> petRepository.findAllByFurColorAsc();
+            case "furDes" -> petRepository.findAllByFurColorDesc();
+            case "countryAsc" -> petRepository.findAllByCountryAsc();
+            case "countryDes" -> petRepository.findAllByCountryDesc();
+            case "ownerAsc" -> petRepository.findAllByOwnerAsc();
+            case "ownerDes" -> petRepository.findAllByOwnerDesc();
+            default -> petRepository.findAllByNameAsc();
+        };
         List<PetInfo> petInfos =  petMapper.petsToPetInfos(pets);
         for (PetInfo petInfo : petInfos) {
             petInfo.setSeqNr(petInfos.indexOf(petInfo) + 1);
