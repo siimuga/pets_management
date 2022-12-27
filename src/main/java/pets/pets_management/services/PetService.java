@@ -48,7 +48,8 @@ public class PetService {
     private CountryMapper countryMapper;
     public void addPet(PetRequest request) {
         Pet pet = new Pet();
-        pet.setName(request.getName());
+        String newName = request.getName().substring(0,1).toUpperCase() + request.getName().substring(1);
+        pet.setName(newName);
         pet.setCode(request.getCode());
         Type byType = typeRepository.findByName(request.getType());
         pet.setType(byType);
@@ -78,7 +79,8 @@ public class PetService {
 
     public void updatePet(PetInfo request) {
         Optional<Pet> pet = petRepository.findById(request.getId());
-        pet.get().setName(request.getName());
+        String newName = request.getName().substring(0,1).toUpperCase() + request.getName().substring(1);
+        pet.get().setName(newName);
         pet.get().setCode(request.getCode());
         Type newType = typeRepository.findByName(request.getType());
         pet.get().setType(newType);
