@@ -3,7 +3,7 @@ package pets.pets_management.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
-import pets.pets_management.UserInfo;
+import pets.pets_management.dto.UserInfo;
 import pets.pets_management.entities.UserData;
 
 import java.util.List;

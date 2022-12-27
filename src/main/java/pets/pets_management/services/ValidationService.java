@@ -1,6 +1,7 @@
-package pets.pets_management;
+package pets.pets_management.services;
 
 import org.springframework.stereotype.Service;
+import pets.pets_management.infrastructure.exception.DataNotFoundException;
 
 @Service
 public class ValidationService {

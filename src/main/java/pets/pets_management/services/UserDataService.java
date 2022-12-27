@@ -1,7 +1,9 @@
-package pets.pets_management;
+package pets.pets_management.services;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import pets.pets_management.dto.UserInfo;
+import pets.pets_management.dto.UserRequest;
 import pets.pets_management.entities.UserData;
 import pets.pets_management.mappers.UserDataMapper;
 import pets.pets_management.repos.PetRepository;

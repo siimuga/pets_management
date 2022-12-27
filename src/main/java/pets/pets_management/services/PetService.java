@@ -1,13 +1,16 @@
-package pets.pets_management;
+package pets.pets_management.services;
 
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
+import pets.pets_management.dto.PetInfo;
+import pets.pets_management.dto.PetRequest;
 import pets.pets_management.dto.CountryInfo;
 import pets.pets_management.dto.FurColorInfo;
 import pets.pets_management.dto.TypeInfo;
 import pets.pets_management.entities.*;
 import pets.pets_management.mappers.CountryMapper;
 import pets.pets_management.mappers.FurColorMapper;
+import pets.pets_management.mappers.PetMapper;
 import pets.pets_management.mappers.TypeMapper;
 import pets.pets_management.repos.*;
 

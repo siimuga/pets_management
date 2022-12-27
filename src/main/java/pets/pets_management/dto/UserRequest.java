@@ -1,4 +1,4 @@
-package pets.pets_management;
+package pets.pets_management.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

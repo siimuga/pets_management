@@ -1,11 +1,11 @@
-package pets.pets_management;
+package pets.pets_management.infrastructure.exception;
 
 import lombok.Data;
 
 @Data
 public class DataNotFoundException extends RuntimeException {
     private final String title;
-    private final String detail;
+    private final  String detail;
 
     public DataNotFoundException(String title, String detail) {
         super(title);

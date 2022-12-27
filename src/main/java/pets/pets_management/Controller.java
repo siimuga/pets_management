@@ -2,9 +2,10 @@ package pets.pets_management;
 
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
-import pets.pets_management.dto.CountryInfo;
-import pets.pets_management.dto.FurColorInfo;
-import pets.pets_management.dto.TypeInfo;
+import pets.pets_management.dto.*;
+import pets.pets_management.services.LoginService;
+import pets.pets_management.services.PetService;
+import pets.pets_management.services.UserDataService;
 
 import java.util.List;
 
