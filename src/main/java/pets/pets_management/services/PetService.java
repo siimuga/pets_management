@@ -63,17 +63,17 @@ public class PetService {
     }
 
     public List<TypeInfo> findAllTypes() {
-        List<Type> types = typeRepository.findAll();
+        List<Type> types = typeRepository.findAllOrdered();
         return typeMapper.typesToTypeInfos(types);
     }
 
     public List<FurColorInfo> findAllFurColors() {
-        Iterable<FurColor> furColors = furColorRepository.findAll();
+        Iterable<FurColor> furColors = furColorRepository.findAllOrdered();
         return furColorMapper.furColorsToFurColorInfos(furColors);
     }
 
     public List<CountryInfo> findAllCountries() {
-        Iterable<Country> countries = countryRepository.findAll();
+        Iterable<Country> countries = countryRepository.findAllOrdered();
         return countryMapper.countriesToCountryInfos(countries);
     }
 

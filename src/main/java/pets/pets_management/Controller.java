@@ -3,6 +3,7 @@ package pets.pets_management;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
 import pets.pets_management.dto.*;
+import pets.pets_management.services.AdminService;
 import pets.pets_management.services.LoginService;
 import pets.pets_management.services.PetService;
 import pets.pets_management.services.UserDataService;
@@ -23,6 +24,9 @@ public class Controller {
     @Resource
     private UserDataService userDataService;
 
+    @Resource
+    private AdminService adminService;
+
     @PostMapping("pet")
     public void addPet(@RequestBody PetRequest request) {petService.addPet(request);}
 
@@ -34,6 +38,11 @@ public class Controller {
     @GetMapping("pets/sort")
     public List<PetInfo> findAllPetsSorted(@RequestParam String sort) {
         return petService.findAllPetsSorted(sort);
+    }
+
+    @PostMapping("selection")
+    public void addNewSelections(@RequestBody SelectionInfo request) {
+        adminService.addNewSelections(request);
     }
 
     @GetMapping("users")
