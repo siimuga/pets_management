@@ -22,20 +22,29 @@ public class AdminService {
     @Resource
     CountryRepository countryRepository;
     public void addNewSelections(SelectionInfo request) {
+        Type type = new Type();
+        FurColor furColor = new FurColor();
+        Country country = new Country();
         if (!request.getType().isEmpty()) {
-            Type type = new Type();
-            type.setName(request.getType().substring(0,1).toUpperCase() + request.getType().substring(1));
-            typeRepository.save(type);
+            String newType = (request.getType().substring(0, 1).toUpperCase() + request.getType().substring(1));
+            boolean typeExists = typeRepository.existsBy(newType);
+            ValidationService.validateSelectionExists(typeExists, newType);
+            type.setName(newType);
         }
         if (!request.getFurColor().isEmpty()) {
-            FurColor furColor = new FurColor();
-            furColor.setName(request.getFurColor().substring(0,1).toUpperCase() + request.getFurColor().substring(1));
-            furColorRepository.save(furColor);
+            String newFurColor = (request.getFurColor().substring(0, 1).toUpperCase() + request.getFurColor().substring(1));
+            boolean furColorExists = furColorRepository.existsBy(newFurColor);
+            ValidationService.validateSelectionExists(furColorExists, newFurColor);
+            furColor.setName(newFurColor);
         }
         if (!request.getCountry().isEmpty()) {
-            Country country = new Country();
-            country.setName(request.getCountry().substring(0,1).toUpperCase() + request.getCountry().substring(1));
-            countryRepository.save(country);
+            String newCountry = (request.getFurColor().substring(0, 1).toUpperCase() + request.getFurColor().substring(1));
+            boolean countryExists = countryRepository.existsBy(newCountry);
+            ValidationService.validateSelectionExists(countryExists, newCountry);
+            country.setName(newCountry);
         }
+        typeRepository.save(type);
+        furColorRepository.save(furColor);
+        countryRepository.save(country);
     }
 }

@@ -12,6 +12,9 @@ public interface TypeRepository extends JpaRepository<Type, Integer> {
     List<Type> findAllOrdered();
     @Query("select t from Type t where t.name = ?1")
     Type findByName(String name);
+
+    @Query("select (count(t) > 0) from Type t where t.name = ?1")
+    boolean existsBy(String name);
 }
 
 

@@ -13,4 +13,6 @@ public interface CountryRepository extends CrudRepository<Country, Integer> {
     @Query("select c from Country c where c.name = ?1")
     Country findByName(String name);
 
+    @Query("select (count(c) > 0) from Country c where c.name = ?1")
+    boolean existsBy(String name);
 }

@@ -26,4 +26,10 @@ public class ValidationService {
             throw new DataNotFoundException(INVALID_INPUT, "This username already exists. Please try again.");
         }
     }
+
+    public static void validateSelectionExists(boolean selectionExists, String name) {
+        if (selectionExists) {
+            throw new DataNotFoundException(INVALID_INPUT, name + " is already created. Please try again.");
+        }
+    }
 }
