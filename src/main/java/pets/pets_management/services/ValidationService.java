@@ -27,9 +27,9 @@ public class ValidationService {
         }
     }
 
-    public static void validateSelectionExists(boolean selectionExists, String name) {
+    public static void validateSelectionExists(boolean selectionExists, String name, String tableName) {
         if (selectionExists) {
-            throw new DataNotFoundException(INVALID_INPUT, name + " is already created. Please try again.");
+            throw new DataNotFoundException(INVALID_INPUT, name + " is already created " + tableName + ". Please try again.");
         }
     }
 }
